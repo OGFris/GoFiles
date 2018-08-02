@@ -1,0 +1,13 @@
+language: go
+
+go:
+- 1.9.x
+- 1.x
+
+before_install:
+- go get -d ./...
+
+script:
+- go test -v ./...
+- cd compiler
+- go build -race -ldflags "-extldflags '-static'"

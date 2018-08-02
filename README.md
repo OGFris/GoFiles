@@ -1,4 +1,4 @@
-# GoFiles [![cover.run](https://cover.run/go/github.com/OGFris/GoFiles.svg?style=flat&tag=golang-1.10)](https://cover.run/go?tag=golang-1.10&repo=github.com%2FOGFris%2FGoFiles)
+# GoFiles [![Build Status](https://travis-ci.com/OGFris/GoFiles.svg?branch=master)](https://travis-ci.com/OGFris/GoFiles)
  GoFiles is an open source Golang compiler with it's virtual structure library that compiles non-go files on the binary file, written by [Fris](https://twitter.com/OGFris).
 
 ## Documentations

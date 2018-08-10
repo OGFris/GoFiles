@@ -31,20 +31,21 @@ import (
 )
 
 func main() {
+	//If the server isn't started, it will be automatically hosted on port 80.
 	server.Instance.Start("8888")
 	html := GoFiles.NewFile("./html/index.html")
 	css := GoFiles.NewFile("./css/index.css")
 	js := GoFiles.NewFile("./js/index.js")
 
-	html.SetName("")
-	html.Host(false)
-	html.SetName("index.html")
-	html.Host(false)
+	html.Name = ""
+	html.Host(false, server.ContentTypeHtml)
+	html.Name = "index.html"
+	html.Host(false, server.ContentTypeHtml)
 
-	css.SetName("css/index.css")
-	css.Host(false)
-	js.SetName("js/index.js")
-	js.Host(false)
+	css.Name = "css/index.css"
+	css.Host(false, server.ContentTypeCss)
+	js.Name = "js/index.js"
+	js.Host(false, server.ContentTypePlain)
 
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Println("Press ENTER to close the server.")

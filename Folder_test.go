@@ -38,7 +38,7 @@ func TestFolder(t *testing.T) {
 		t.Fail()
 	}
 	folder.SetFolder(string(bytes))
-	if len(folder.GetFolders()) != len(fakeData.GetFolders()) || len(folder.GetFiles()) != len(fakeData.GetFiles()) {
+	if len(folder.Folders) != len(fakeData.Folders) || len(folder.Files) != len(fakeData.Files) {
 		t.Fail()
 	}
 }

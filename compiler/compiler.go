@@ -28,14 +28,13 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-)
+	)
 
 func init() {
 	replacer.OldFiles = make(map[string][]byte)
 }
 
 func main() {
-
 	if len(os.Args) == 3 {
 		switch strings.ToLower(os.Args[1]) {
 		case "build":

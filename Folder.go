@@ -32,51 +32,19 @@ type Folder struct {
 	Folders []Folder `json:"folders"`
 }
 
-// AddFolder adds a virtual folder to your Folder
+// AddFolder adds a virtual folder to your Folder.
 // Shouldn't be used unless you know what you're doing.
 func (f *Folder) AddFolder(fadd Folder) {
-	f.SetFolders(append(f.GetFolders(), fadd))
+	f.Folders = append(f.Folders, fadd)
 }
 
-// AddFile adds a virtual file to your Folder
+// AddFile adds a virtual file to your Folder.
 // Shouldn't be used unless you know what you're doing.
 func (f *Folder) AddFile(file File) {
-	f.SetFiles(append(f.GetFiles(), file))
+	f.Files = append(f.Files, file)
 }
 
-// GetFolders gives you all the folders on your Folder
-func (f *Folder) GetFolders() []Folder {
-	return f.Folders
-}
-
-// SetFolders sets all the folders on your Folder.
-// Shouldn't be used unless you know what you're doing.
-func (f *Folder) SetFolders(folders []Folder) {
-	f.Folders = folders
-}
-
-// GetFiles gives you all the files on your Folder
-func (f *Folder) GetFiles() []File {
-	return f.Files
-}
-
-// SetFiles sets all the files on your Folder.
-// Shouldn't be used unless you know what you're doing.
-func (f *Folder) SetFiles(files []File) {
-	f.Files = files
-}
-
-// Gives you the path of your folder.
-func (f *Folder) GetPath() string {
-	return f.Path
-}
-
-// SetPath sets the path of your Folder.
-// Shouldn't be used unless you know what you're doing.
-func (f *Folder) SetPath(path string) {
-	f.Path = path
-}
-
+// NewFolder Creates a new Folder instance.
 func NewFolder(path string) *Folder {
 	return &Folder{Path: path}
 }
@@ -86,7 +54,7 @@ func NewFolder(path string) *Folder {
 func (f *Folder) SetFolder(folder string) *Folder {
 	var v Folder
 	json.Unmarshal([]byte(folder), &v)
-	f.SetFiles(v.GetFiles())
-	f.SetFolders(v.GetFolders())
+	f.Files = v.Files
+	f.Folders = v.Folders
 	return f
 }

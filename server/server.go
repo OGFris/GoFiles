@@ -34,6 +34,7 @@ type Server struct {
 	Running bool
 }
 
+// Start the Server's http instance.
 func (s *Server) Start(port string) {
 	Routes = make(map[string]Route)
 

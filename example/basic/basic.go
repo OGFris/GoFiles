@@ -32,7 +32,7 @@ func main() {
 	folder := GoFiles.NewFolder("./testFolder")
 	// the variable folder now refer to a virtual folder which is going to be compiled with the binary file.
 
-	for _, file := range folder.GetFiles() {
-		fmt.Println(file.Path, " => ", file.GetContents())
+	for _, file := range folder.Files {
+		fmt.Println(file.Path, " => ", file.Contents)
 	}
 }

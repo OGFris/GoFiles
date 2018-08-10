@@ -26,17 +26,27 @@ import (
 	"net/http"
 )
 
+const (
+	ContentTypeHtml = "text/html"
+	ContentTypeCss = "text/css"
+	ContentTypePlain = "text/plan"
+	ContentTypeXml = "text/xml"
+	ContentTypeJson = "application/json"
+)
+
 type Router struct {
 }
 
 type Route struct {
-	Url      string
-	Contents []byte
-	Private  bool
+	Url      	string
+	Contents 	[]byte
+	Private  	bool
+	ContentType string
 }
 
 var Routes map[string]Route
 
+// ServerHTTP implements the method on net/http.
 func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	path := req.URL.Path
 	found := false
@@ -45,11 +55,13 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			found = true
 			if route.Private {
 				if req.Header.Get("x-forwarded-for") == "" {
+					w.Header().Set("Content-Type", route.ContentType)
 					w.Write(route.Contents)
 				} else {
 					w.WriteHeader(http.StatusUnauthorized)
 				}
 			} else {
+				w.Header().Set("Content-Type", route.ContentType)
 				w.Write(route.Contents)
 			}
 			break
@@ -60,9 +72,10 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func AddFile(name string, contents []byte, private bool) {
+// AddFile adds route to the file on the http server.
+func AddFile(name string, contents []byte, private bool, contentType string) {
 	if !Instance.Running {
-		Instance.Start("8080")
+		Instance.Start("80")
 	}
-	Routes[name] = Route{Url: "/" + name, Contents: contents, Private: private}
+	Routes[name] = Route{Url: "/" + name, Contents: contents, Private: private, ContentType: contentType}
 }

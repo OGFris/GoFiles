@@ -32,24 +32,9 @@ type File struct {
 	Contents string `json:"contents"`
 }
 
-// Name gives the real name of the file.
-func (f *File) GetName() string {
-	return f.Name
-}
-
-// Name sets the real name of the file.
-func (f *File) SetName(name string) {
-	f.Name = name
-}
-
-// NewFile Creates a new File.
+// NewFile Creates a new File instance.
 func NewFile(path string) *File {
 	return &File{Path: path}
-}
-
-// Content returns a string of the virtual's file content.
-func (f *File) GetContents() string {
-	return f.Contents
 }
 
 // SetContent sets the content of the virtual file.
@@ -59,27 +44,17 @@ func (f *File) SetContents(content string) *File {
 	return f
 }
 
-// GetPath gives the real path of the file.
-func (f *File) GetPath() string {
-	return f.Path
-}
-
-// SetPath sets the real path of the file.
-func (f *File) SetPath(path string) {
-	f.Path = path
-}
-
 // Host adds the file to the http server.
-func (f *File) Host(private bool) {
-	server.AddFile(f.GetName(), []byte(f.GetContents()), private)
+func (f *File) Host(private bool, contentType string) {
+	server.AddFile(f.Name, []byte(f.Contents), private, contentType)
 }
 
 // Url gives the http url for the file.
 func (f *File) Url() string {
-	return "/" + f.GetName()
+	return "/" + f.Name
 }
 
 // Hosted gives a boolean whether the file is hosted on the http server or not.
 func (f *File) Hosted() bool {
-	return server.Routes[f.GetName()].Url != ""
+	return server.Routes[f.Name].Url != ""
 }

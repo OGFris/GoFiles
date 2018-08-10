@@ -29,7 +29,7 @@ import (
 func TestFile(t *testing.T) {
 	file := NewFile("./FakeFile.txt")
 	file.SetContents("test1234567890/*-")
-	if file.GetContents() != "test1234567890/*-" {
+	if file.Contents != "test1234567890/*-" {
 		t.Fail()
 	}
 }

@@ -27,20 +27,20 @@ import (
 )
 
 const (
-	ContentTypeHtml = "text/html"
-	ContentTypeCss = "text/css"
+	ContentTypeHtml  = "text/html"
+	ContentTypeCss   = "text/css"
 	ContentTypePlain = "text/plan"
-	ContentTypeXml = "text/xml"
-	ContentTypeJson = "application/json"
+	ContentTypeXml   = "text/xml"
+	ContentTypeJson  = "application/json"
 )
 
 type Router struct {
 }
 
 type Route struct {
-	Url      	string
-	Contents 	[]byte
-	Private  	bool
+	Url         string
+	Contents    []byte
+	Private     bool
 	ContentType string
 }
 

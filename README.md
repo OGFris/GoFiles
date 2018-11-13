@@ -5,7 +5,7 @@
  It can be found here [GoFiles Docs](https://godoc.org/github.com/OGFris/GoFiles).
 
 ## Requirements
- - Go version > 1.10.
+ - Go version >= 1.10.
  - Follow the installation instructions before compiling.
 
 ## Installation

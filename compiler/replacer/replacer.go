@@ -26,7 +26,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/OGFris/GoFiles"
-	"github.com/pkg/errors"
+	"errors"
 	"io/ioutil"
 	"os"
 	"strings"
